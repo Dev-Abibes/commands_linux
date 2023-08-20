@@ -48,12 +48,12 @@
 `mv`: Déplace ou renomme des fichiers ou dossiers.
 ```js   
         mv file.txt new_file.txt
-mv nom_du_fichier chemin_de_destination
-mv fichier1 fichier2 repertoire_de_destination
-mv -r nom_du_repertoire repertoire_de_destination
-mv -f fichier_source repertoire_de_destination // Déplacer en Écrasant les Fichiers Existants
-mv ancien_nom chemin_de_destination/nouveau_nom // Déplacer et Renommer un Fichier
-mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Répertoire en Changeant de Nom
+        mv nom_du_fichier chemin_de_destination
+        mv fichier1 fichier2 repertoire_de_destination
+        mv -r nom_du_repertoire repertoire_de_destination
+        mv -f fichier_source repertoire_de_destination // Déplacer en Écrasant les Fichiers Existants
+        mv ancien_nom chemin_de_destination/nouveau_nom // Déplacer et Renommer un Fichier
+        mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Répertoire en Changeant de Nom
 ```
 `touch`: Crée plusieurs fichiers vides.
 ```js 
@@ -451,60 +451,46 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
 ```js 
         jobs
 ```
-`cron`: Planifie des tâches à exécuter à des moments spécifiques.
-```js
-        0 2 * * * commande 
-```
-`crontab`: Gère les tâches planifiées (cron jobs) pour exécuter des commandes à des moments spécifiques.
-```js 
-        crontab -e
-``` 
+
 `at`: Planifie l'exécution d'une commande à un moment précis.
 ```js 
         echo "commande" | at 15:00
 ```
-`nc`: Établit des connexions réseau pour lire ou écrire des données.
-```js 
-        nc -l 1234
+   nc -l 1234
 ```
 `ssh-keygen`: Génère des paires de clés SSH.
 ```js 
         ssh-keygen -t rsa
+        ssh-keygen -t ecdsa
+        ssh-keygen -t ed25519
+        ssh-keygen -N "votre_mot_de_passe"
+        ssh-keygen -f chemin_vers_clé
+        
+
+
 ```
 `ssh-copy-id`: Copie la clé SSH vers un serveur distant pour une connexion sans mot de passe.
 ```js 
         ssh-copy-id utilisateur@serveur
+        ssh-copy-id -p port utilisateur@adresse_ip_serveur
+        ssh-copy-id -i chemin_vers_clé_publique utilisateur@adresse_ip_serveur
+        ssh-copy-id utilisateur_destinataire@adresse_ip_serveur
+        
 ```
 `nohup`: Exécute une commande qui continue à s'exécuter même après la déconnexion.
 ```js 
         nohup commande &
 ```
 `watch`: Exécute périodiquement une commande et affiche les résultats mis à jour.
-```js watch -n 1 commande ```
-`history`: Affiche l'historique des commandes précédemment exécutées.
-```js 
-        history
+```js
+        watch -n 1 commande 
 ```
-`grep`: Recherche des motifs dans un fichier.
-```js 
-        grep "motif" fichier.txt
-```
-`find`: Recherche des fichiers et dossiers dans une arborescence.
-```js 
-        find /dossier -name "*.txt"
-```
+
 `wc`: Compte le nombre de lignes, de mots et de caractères dans un fichier.
 ```js 
 wc fichier.txt
 ```
-`sort`: Trie les lignes d'un fichier.
-```js 
-        sort fichier.txt
-```
-`uniq`: Supprime les lignes en double consécutives d'un fichier.
-```js 
-        uniq fichier.txt
-```
+
 `cut`: Coupe des sections de chaque ligne d'un fichier.
 ```js  
         cut -d',' -f1 fichier.csv
@@ -517,11 +503,4 @@ wc fichier.txt
 ```js 
         diff fichier1.txt fichier2.txt
 ```
-`paste`: Colle ensemble les lignes de plusieurs fichiers.
-```js
-        paste fichier1.txt fichier2.txt
-```
-`diff`: Compare deux fichiers et affiche les différences entre eux.
-```js 
-        diff fichier1.txt fichier2.txt
-```
+
