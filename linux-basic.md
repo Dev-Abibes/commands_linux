@@ -5,10 +5,14 @@
         ls -l
 ```
 `cd`: Change le répertoire courant.
-```js cd /dossier ```
+```js
+        cd /dossier
+```
 
 `pwd`: Affiche le chemin complet du répertoire courant.
-```js  pwd ```
+```js
+        pwd
+```
 
 `mkdir`: Crée un nouveau dossier.
 ```js    mkdir nouveau_dossier ```
@@ -58,7 +62,7 @@
 `tar`: Crée ou extrait des archives tar.
 ```js tar -cvf archive.tar dossier/ ```
 
-`ssh``: Se connecte à un serveur distant en utilisant SSH. 
+`ssh`: Se connecte à un serveur distant en utilisant SSH. 
 ```js ssh utilisateur@serveur ```
 
 `scp`: Copie des fichiers entre deux machines via SSH. 
@@ -74,10 +78,10 @@
 ```js   sort fichier.txt ```
 
 `uniq`: Supprime les lignes en double consécutives d'un fichier. 
-```js uniq fichier.txt ```
+```js  uniq fichier.txt ```
 
 `head`: Affiche les premières lignes d'un fichier.
-```js    head -n 10 fichier.txt ```
+```js  head -n 10 fichier.txt ```
 
 `tail`: Affiche les dernières lignes d'un fichier. 
 ```js   tail -n 5 fichier.txt ```
