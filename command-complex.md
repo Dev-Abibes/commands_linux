@@ -47,10 +47,14 @@
   ssh -D 1080 utilisateur@serveur_ssh //Créer un Tunnelling SSH Dynamique
 
   sudo -u autre_utilisateur commande //Exécuter une Commande dans le Contexte d'un Autre Utilisateur
- //Surveiller l'Utilisation de l'Espace Disque en Temps Réel
-  watch -n 1 "du -sh /chemin/vers/repertoire"
-  //Afficher les Erreurs Système dans un Fichier de Log
-  tail -f /var/log/syslog > fichier.log 
+
+  watch -n 1 "du -sh /chemin/vers/repertoire"  //Surveiller l'Utilisation de l'Espace Disque en Temps Réel
+
+  tail -f /var/log/syslog > fichier.log   //Afficher les Erreurs Système dans un Fichier de Log
+
+
+
+
 
   
 
