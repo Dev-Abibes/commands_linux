@@ -130,3 +130,37 @@ Calculer la Différence entre Dates Successives :
 ```js
 awk -F '-' '{ date = $1 "-" $2 "-" $3; if (prev_date) { diff = systime() - mktime(date " 00 00 00"); print date, ":", diff / 86400, "jours" } prev_date = date }' fichier_dates.txt
 ```
+Calculer les Statistiques par Catégorie :
+```js
+  awk -F ',' 'NR == 1 { print "Catégorie | Somme | Moyenne | Max | Min" } NR > 1 { cat[$1]++; sum[$1] += $2; max[$1] = ($2 > max[$1] || !max[$1]) ? $2 : max[$1]; min[$1] = ($2 < min[$1] || !min[$1]) ? $2 : min[$1] } END { for (c in cat) { print c, sum[c], sum[c]/cat[c], max[c], min[c] } }' fichier.csv
+```
+  awk -F ',' 'NR == 1 { print "Catégorie | Somme | Moyenne | Max | Min" } NR > 1 { cat[$1]++; sum[$1] += $2; max[$1] = ($2 > max[$1] || !max[$1]) ? $2 : max[$1]; min[$1] = ($2 < min[$1] || !min[$1]) ? $2 : min[$1] } END { for (c in cat) { print c, sum[c], sum[c]/cat[c], max[c], min[c] } }' fichier.csv
+Reformatage et Alignement de Données :
+
+```js
+  awk -F ',' '{ printf "%-20s %-10s %10s\n", $1, $2, $3 }' fichier.csv
+```
+Conversion d'Unités :
+```js
+  awk '{ miles = $1 * 0.621371; print $1 " km =", miles " miles" }' fichier_distances.txt
+```
+`Calcul de la Fréquence d'Occurrence de Motifs`
+Supposons que vous ayez un texte et que vous souhaitiez compter la fréquence d'occurrence de motifs de deux mots 
+```js
+  awk '{ for (i = 1; i <= NF - 1; i++) freq[$i " " $(i+1)]++ } END { for (motif in freq) print motif, freq[motif] }' texte.txt
+```
+`Analyse de Log et Affichage d'Alertes`
+Supposons que vous ayez un fichier de logs avec des codes d'erreur et que vous souhaitiez afficher les codes d'erreur uniques et leurs occurrences :
+```js
+  awk '/Code d\'erreur/ { codes[$NF]++ } END { for (code in codes) print "Code", code, ":", codes[code], "occurrences" }' fichier_logs.txt
+```
+
+
+
+
+
+
+
+
+
+
