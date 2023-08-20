@@ -1,28 +1,35 @@
 ## Learn linux basic**
 
 `ls`: Affiche les fichiers et dossiers dans le répertoire actuel.
-    ```js
+```js
         ls -l
-    ```
+```
 `cd`: Change le répertoire courant.
-    ```js cd /dossier ```
+```js cd /dossier ```
 
 `pwd`: Affiche le chemin complet du répertoire courant.
-    ```js  pwd ```
+```js  pwd ```
+
 `mkdir`: Crée un nouveau dossier.
-    ```js    mkdir nouveau_dossier ```
+```js    mkdir nouveau_dossier ```
+
 `rm`: Supprime des fichiers ou dossiers.
-    ```js  rm fichier.txt ```
+```js  rm fichier.txt ```
+
 `cp`: Copie des fichiers ou dossiers.
-    ```js         cp fichier.txt destination/ ```
+```js         cp fichier.txt destination/ ```
+
 `mv`: Déplace ou renomme des fichiers ou dossiers.
-    ```js        mv fichier.txt nouveau_nom.txt ```
+```js        mv fichier.txt nouveau_nom.txt ```
+
 `touch`: Crée un fichier vide.
-    ```js touch new_file1.txt new_file2.txt new_file3.txt new_file4.txt new_file5.txt new_file6.txt ```
+```js touch new_file1.txt new_file2.txt new_file3.txt new_file4.txt new_file5.txt new_file6.txt ```
+
 `cat`: Affiche le contenu d'un fichier.
-    ```js cat file.txt ```
+```js cat file.txt ```
+
 `echo`: Affiche du texte à l'écran.
-    ```js    echo "Hello, World!" ```
+```js    echo "Hello, World!" ```
 
 `grep`: Recherche des motifs dans un fichier.
 ```js   grep "motif" fichier.tx ```
