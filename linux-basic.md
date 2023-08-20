@@ -64,10 +64,10 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
 ```js 
         cat file.txt
         cat fichier1 fichier2 fichier3
-        cat fichier_source > nouveau_fichier # copy
-        cat fichier_source >> fichier_destination # Ajout du Contenu d'un Fichier à la Fin d'un Autre Fichier
-        cat -n nom_du_fichier # avec num de lignes
-        cat -v nom_du_fichier # Affichage des Caractères non Imprimables
+        cat fichier_source > nouveau_fichier // copy
+        cat fichier_source >> fichier_destination // Ajout du Contenu d'un Fichier à la Fin d'un Autre Fichier
+        cat -n nom_du_fichier // avec num de lignes
+        cat -v nom_du_fichier //Affichage des Caractères non Imprimables
         cat fichier1 fichier2 > fichier_combine
 ```
 `echo`: Affiche du texte à l'écran.
@@ -81,11 +81,11 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
 `grep`: Recherche des motifs dans un fichier.
 ```js   
         grep "motif" file.tx
-        grep -r "motif" répertoire/ # recherche recusive
-        grep -i "motif" fichier.txt # Recherche Insensible à la Casse
-        grep -c "motif" fichier.txt # Compter les Occurrences de Motifs
-        grep -v "motif" fichier.txt # Afficher les Lignes sans Correspondance
-        grep -n "motif" fichier.txt # Afficher le Numéro de Ligne
+        grep -r "motif" répertoire         //recherche recusive
+        grep -i "motif" fichier.txt         //Recherche Insensible à la Casse
+        grep -c "motif" fichier.txt         //Compter les Occurrences de Motifs
+        grep -v "motif" fichier.txt         //Afficher les Lignes sans Correspondance
+        grep -n "motif" fichier.txt         //Afficher le Numéro de Ligne
         grep -E "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b" fichier.txt
         grep -f motifs.txt fichier.txt
 ```
@@ -93,19 +93,19 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
 ```js   
         find /dossier -name "*.txt
         find chemin/vers/repertoire -name "*.extension"
-        find chemin/vers/repertoire -size +Xc # recherche par taille
-        find chemin/vers/repertoire -type f  # fichiers réguliers
-        find chemin/vers/repertoire -type d  # répertoires
-        find chemin/vers/repertoire -type l  # liens symboliques
-        find chemin/vers/repertoire -mtime -X # Recherche de Fichiers Modifiés Récemment
+        find chemin/vers/repertoire -size +Xc         //recherche par taille
+        find chemin/vers/repertoire -type f          //fichiers réguliers
+        find chemin/vers/repertoire -type d          //répertoires
+        find chemin/vers/repertoire -type l          //liens symboliques
+        find chemin/vers/repertoire -mtime -X         //Recherche de Fichiers Modifiés Récemment
         find chemin/vers/repertoire -user nom_du_proprietaire
         find chemin/vers/repertoire -name "*.extension" -exec rm {} \; # execution de la commande apres la recherche
 ```
 `chmod`: Modifie les permissions d'accès aux fichiers.
 ```js   
         chmod +x script.sh && chmod 600 script.sh
-        chmod +w nom_du_fichier   # Ajouter la permission d'écriture
-        chmod -r nom_du_fichier   # Supprimer la permission de lecture
+        chmod +w nom_du_fichier           //Ajouter la permission d'écriture
+        chmod -r nom_du_fichier           //Supprimer la permission de lecture
         chmod -R 755 nom_du_repertoire
         chmod u+x nom_du_fichier
         find chemin/vers/repertoire -type f -exec chmod 644 {} \;
@@ -143,43 +143,43 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
         wget -r --level=1 URL_du_site_web
         wget --user=USERNAME --password=PSSWORD URL_du_fichier_protégé
         wget --header="Nom-En-Tête: Valeur" URL_du_fichier
-        wget -c URL_du_fichier # continue le téléchargement interempu
-        wget --limit-rate=100k URL_du_fichier # limite la vitesse de telechargement
-        wget --input-file=liens.txt # Téléchargement à Partir d'un Fichier de Liens 
-        wget --no-check-certificate URL_du_fichier # ignore les certificats SSL
-        wget -b URL_du_fichier # téléchargement en arriere plan
-        wget --proxy=adresse_du_proxy URL_du_fichier # Téléchargement avec Proxy
+        wget -c URL_du_fichier                         //continue le téléchargement interempu
+        wget --limit-rate=100k URL_du_fichier          //limite la vitesse de telechargement
+        wget --input-file=liens.txt         //Téléchargement à Partir d'un Fichier de Liens 
+        wget --no-check-certificate URL_du_fichier      //ignore les certificats SSL
+        wget -b URL_du_fichier                          //téléchargement en arriere plan
+        wget --proxy=adresse_du_proxy URL_du_fichier    //Téléchargement avec Proxy
         
 ```
 `curl`: Effectue des requêtes HTTP et affiche la réponse.
 ```js   
         curl https://exemple.com
-        curl -O URL_du_fichier # téléchargement de fichier
+        curl -O URL_du_fichier         //téléchargement de fichier
         curl -o nom_du_fichier_local URL_du_fichier
         curl -d "parametre1=valeur1&parametre2=valeur2" -X POST URL_du_serveur
-        curl -H "Nom-En-Tête: Valeur" URL_de_la_page # Ajout d'En-têtes Personnalisés
-        curl -L URL_avec_redirection        # Suivre les Redirections :
+        curl -H "Nom-En-Tête: Valeur" URL_de_la_page         //Ajout d'En-têtes Personnalisés
+        curl -L URL_avec_redirection                //Suivre les Redirections :
         curl -u USERNAME:PASSWORD URL_du_fichier_protégé
-        curl -F "file=@chemin/path/to/file" URL_du_serveur # Envoi de Fichiers via POST
+        curl -F "file=@chemin/path/to/file" URL_du_serveur         //Envoi de Fichiers via POST
 
 ```
 `tar`: Crée ou extrait des archives tar.
 ```js 
         tar -cvf archive.tar dossier/
-        tar -cvf archive.tar fichier1 fichier2 dossier1 # Création d'une Archive Tar
+        tar -cvf archive.tar fichier1 fichier2 dossier1         //Création d'une Archive Tar
         tar -xvf archive.tar # extraction
         tar -xvf archive.tar -C chemin/vers/repertoire
-        tar -tvf archive.tar         # Liste du Contenu d'une Archive Tar
-        tar -czvf archive.tar.gz fichier1 fichier2 dossier1         # Compression d'une Archive avec gzip
-        tar -xzvf archive.tar.gz         # Extraction d'une Archive Tar Compressée avec gzip
-        tar -cjvf archive.tar.bz2 fichier1 fichier2 dossier1         # Compression d'une Archive avec bzip2
+        tar -tvf archive.tar         //Liste du Contenu d'une Archive Tar
+        tar -czvf archive.tar.gz fichier1 fichier2 dossier1      //Compression d'une Archive avec gzip
+        tar -xzvf archive.tar.gz         //Extraction d'une Archive Tar Compressée avec gzip
+        tar -cjvf archive.tar.bz2 fichier1 fichier2 dossier1         //Compression d'une Archive avec bzip2
 ```
 `ssh`: Se connecte à un serveur distant en utilisant SSH. 
 ```js 
         ssh -i "key.pub" user@127.0.0.1
         ssh -p port utilisateur@adresse_ip
         ssh utilisateur@adresse_ip "commande à exécuter"
-        sftp utilisateur@adresse_ip # transfert de fichier securisé
+        sftp utilisateur@adresse_ip         //transfert de fichier securisé
 
         # Forward local port 8080 to remote port 80
         ssh -L 8080:localhost:80 user@IP
@@ -193,7 +193,7 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
         scp user@IP:/chemin/vers/source/fichier.txt /chemin/vers/destination/
         scp -r dossier_local user@IP:/path/vers/destination/
         scp -r user@IP:/chemin/vers/source/dossier distant_dossier_local
-        rsync -av --exclude='file_exclu' /path/to/source/dossier/ user@IP:/path/vers/dest/ # Exclure Certains File/Dir
+        rsync -av --exclude='file_exclu' /path/to/source/dossier/ user@IP:/path/vers/dest/        //Exclure Certains File/Dir
         scp -P port file.txt user@IP:/path/to/destination/
 
 ```
@@ -201,10 +201,10 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
 ```js 
         sed 's/motif/remplacement/' fichier.txt
         sed 's/ancien_motif/nouveau_motif/g' fichier.txt 
-        sed '/motif/d' file.txt # Suppression de Lignes Correspondant à un Motif
-        sed '/motif/i Nouveau texte' fichier.txt # Ajout de Texte Avant ou Après une Ligne
-        sed '/motif/a Nouveau texte' fichier.txt # ajouter du texte après une ligne contenant un motif, utilisez
-        sed 's/^.\{n\}//' fichier.txt # Suppression de Caractères en Début de Ligne
+        sed '/motif/d' file.txt         //Suppression de Lignes Correspondant à un Motif
+        sed '/motif/i Nouveau texte' fichier.txt         //Ajout de Texte Avant ou Après une Ligne
+        sed '/motif/a Nouveau texte' fichier.txt         //ajouter du texte après une ligne contenant un motif, utilisez
+        sed 's/^.\{n\}//' fichier.txt         //Suppression de Caractères en Début de Ligne
 
 ```
 `awk`: Manipule et traite des données tabulaires dans un fichier texte. 
@@ -221,33 +221,33 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
 `sort`: Trie les lignes d'un fichier. 
 ```js   
         sort fichier.txt
-        sort -n file.txt # tri ordre numeric
-        sort -r file.txt # tri ordre decroissant
-        sort -k2 file.txt # tri colonne 2
-        sort -s file.txt # Tri Stabilisé :
-        sort -f file.txt # Tri Ignorant la Casse
-        sort -t":" -k2 fichier.txt # tri spécifique
+        sort -n file.txt                 //tri ordre numeric
+        sort -r file.txt                 //tri ordre decroissant
+        sort -k2 file.txt                //tri colonne 2
+        sort -s file.txt                 //Tri Stabilisé :
+        sort -f file.txt                 //Tri Ignorant la Casse
+        sort -t":" -k2 fichier.txt       //tri spécifique
         cat fichier.txt | sort -k2,2 -k1,1
 ```
 `uniq`: Supprime les lignes en double consécutives d'un fichier. 
 ```js  
         uniq fichier.txt
-        uniq nom_du_fichier > fichier_sortie_unique // Supprimer les Lignes Dupliquées d'un Fichier
-        uniq -c nom_du_fichier // Compter les Occurrences de Lignes :
-        uniq -w num nom_du_fichier //Supprimer les Espaces en Début de Ligne Avant Comparaison
-        uniq -s num nom_du_fichier //Afficher les Lignes Uniques Ignorant un Nombre de Caractères
+        uniq nom_du_fichier > fichier_sortie_unique    //Supprimer les Lignes Dupliquées d'un Fichier
+        uniq -c nom_du_fichier         //Compter les Occurrences de Lignes :
+        uniq -w num nom_du_fichier         //Supprimer les Espaces en Début de Ligne Avant Comparaison
+        uniq -s num nom_du_fichier         //Afficher les Lignes Uniques Ignorant un Nombre de Caractères
 ```
 `head`: Affiche les premières lignes d'un fichier.
 ```js  
         head -n 10 fichier.txt
-        head -qn 1 nom_du_fichier // Afficher les Lignes avec des En-têtes de Colonnes
+        head -qn 1 nom_du_fichier         //Afficher les Lignes avec des En-têtes de Colonnes
         head fichier1 fichier2
         ls -l | head
 ```
 `tail`: Affiche les dernières lignes d'un fichier. 
 ```js   
         tail -n 5 fichier.txt
-        tail -f nom_du_fichier // suivre en temps reel les ajouts dans le fichier
+        tail -f nom_du_fichier         //suivre en temps reel les ajouts dans le fichier
         tail fichier1 fichier2
         ls -l | tail
 ```
@@ -280,9 +280,9 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
 ```js    
         history
         history -n 20
-        !5 executer la commande à partir de l'historique , suffit justre le numéro
+        !5                 //executer la commande à partir de l'historique , suffit justre le numéro
         history | grep "motif"
-        history -d 5 // delete spécific
+        history -d 5         // delete spécific
 
 ```
 
@@ -331,14 +331,7 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
         crontab -r // Supprimer la Table des Tâches Cron
         
 ```
-`nc`: Établit des connexions réseau pour lire ou écrire des données.
-```js
-          nc -l 1234
-```
-`export`: Définit une variable d'environnement.
-```js 
-        export MA_VARIABLE=valeur
-```
+
 `unset` Supprime une variable d'environnement.
 ```js 
         unset MA_VARIABLE
@@ -347,14 +340,7 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
 ```js  
         source script.sh
 ```
-`shutdown` Arrête ou redémarre le système.
-```js   
-        shutdown -h now
-```
-`reboot` Redémarre le système.
-```js    
-        reboot
-```
+
 `ifconfig/ip`: Affiche les informations sur les interfaces réseau (ifconfig pour les anciennes versions, ip pour les plus récentes).
 ```js    
         ifconfig ou ip addr
@@ -366,13 +352,36 @@ mv ancien_chemin/nom_du_repertoire nouveau_chemin/nouveau_nom //Déplacer un Ré
         ifconfig eth0 promisc         //Activer ou Désactiver le Mode Promiscuous
         ifconfig eth0 -promisc         //Pour désactiver le mode promiscuous
 ```
+`nc`: Établit des connexions réseau pour lire ou écrire des données.
+```js
+        nc -l 1234
+        nc -l -p 12345 -v -k -e /bin/cat       //Créer un Serveur Écho TCP
+        nc adresse_ip_du_serveur 12345         //Se Connecter à un Serveur TCP :
+        nc -u -l -p 54321                      //Créer un Serveur UDP Écoutant :
+        nc -l -p 12345 > fichier_recu.txt      //Transférer un Fichier entre Deux Machines
+        nc adresse_ip_réceptrice 12345 < fichier_local.txt         //Sur la machine émettrice
+        nc -zv IP 80          //Scanner un Port pour la Connectivité
+```
 `netstat` Affiche les statistiques réseau et les connexions en cours.
 ```js    
         netstat -an
+        netstat -tuln         //Afficher les Connexions Réseau Actives
+        netstat -i            //Afficher les Statistiques de l'Interface Réseau
+        netstat -r            //Afficher les Tables de Routage
+        netstat -i 2          //Afficher les Statistiques d'Interface en Continu
+        netstat -tuln -p      //Afficher les Informations sur les Processus Liés aux Ports :
+        netstat -tuln -6      //Afficher les Informations sur les Connexions IPv6
+        
 ```
 ** lsof: Liste les fichiers ouverts par les processus en cours d'exécution.
 ```js     
         lsof -i
+        lsof -p 12345                    //Afficher les Fichiers Ouverts par un Processus Spécifique 
+        lsof -u utilisateur              //Afficher les Fichiers Ouverts par un Utilisateur
+        lsof fichier.txt                 //Afficher les Fichiers Ouverts par un Fichier Spécifique 
+        lsof +D /chemin/vers/repertoire  //Afficher les Fichiers Ouverts sur un Répertoire
+        lsof -t /var/log/*.log           //Afficher les Fichiers Ouverts par Type :
+
 ```
 `useradd`: Ajoute un nouvel utilisateur.
 ```js 
