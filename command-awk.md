@@ -6,27 +6,27 @@ Filtrer les Lignes qui Satisfont Plusieurs Conditions
 ```js
   awk '$1 > 100 && $2 < 50' fichier.txt
 ```
-Compter le Nombre de Mots dans un Fichier :
+Compter le Nombre de Mots dans un Fichier
 ```js
   awk '{ total += NF } END { print "Nombre de mots :", total }' fichier.txt
 ```
-Convertir un Format de Date dans un Fichier :
+Convertir un Format de Date dans un Fichier
 ```js
   awk -F '/' '{ print $3 "-" $1 "-" $2 }' fichier_dates.txt
 ```
-Grouper et Agréger des Données avec awk :
+Grouper et Agréger des Données avec awk
 ```js
   awk -F ',' '{ ventes[$1] += $2 } END { for (produit in ventes) print produit, ventes[produit] }' ventes.csv
 ```
-Extraire les Lignes entre Deux Motifs :
+Extraire les Lignes entre Deux Motifs
 ```js
   awk '/Motif1/,/Motif2/' fichier.txt
 ```
-Afficher les Lignes Répétées avec leur Compteur :
+Afficher les Lignes Répétées avec leur Compteur
 ```js
-  awk 'seen[$0]++ { print $0, seen[$0] }' fichier.txt
+  awk 'seen[$0]++ { print $0, seen[$0] }' file.txt
 ```
-Travailler avec des Tableaux Associatifs :
+Travailler avec des Tableaux Associatifs
 ```js
   awk '{ sum += $1; sumsq += $1^2 } END { avg = sum/NR; stddev = sqrt(sumsq/NR - avg^2); print "Somme :", sum; print "Moyenne :", avg; print "Écart-type :", stddev }' fichier.txt
 ```
