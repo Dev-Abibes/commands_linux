@@ -81,6 +81,154 @@ for log_file in $LOG_DIR/*.log; do
 done
 ```
 
+`Script de sauvegarde incrémentielle`
+Automatisez la sauvegarde en utilisant des sauvegardes incrémentielles pour économiser de l'espace.
+```js
+#!/bin/bash
+BACKUP_DIR="/backup"
+rsync -avz --link-dest=$BACKUP_DIR/previous_backup /source_data $BACKUP_DIR/$(date +%Y%m%d)
+```
+
+`Script de surveillance de la mémoire` 
+Automatisez la surveillance de l'utilisation de la mémoire et envoyez des alertes en cas de débordement.
+```js
+#!/bin/bash
+THRESHOLD=90
+if [ "$(free -m | awk '/Mem/ {print $3/$2 * 100}' | cut -d. -f1)" -gt "$THRESHOLD" ]; then
+    echo "High memory usage! Please investigate." | mail -s "Memory Usage Alert" admin@example.com
+fi
+```
+`Script de création d'utilisateur`
+Automatisez la création d'un nouvel utilisateur avec un ensemble de permissions.
+```js
+#!/bin/bash
+USERNAME="newuser"
+PASSWORD="password"
+useradd -m -p $(openssl passwd -1 $PASSWORD) $USERNAME
+```
+`Script de sauvegarde vers un serveur distant`
+Automatisez la sauvegarde vers un serveur distant via SSH.
+```js
+#!/bin/bash
+SOURCE_DIR="/source_data"
+DESTINATION_SERVER="user@remote"
+DESTINATION_DIR="/backup"
+rsync -avz $SOURCE_DIR $DESTINATION_SERVER:$DESTINATION_DIR
+```
+`Script de journalisation`
+Automatisez la journalisation de certaines actions, par exemple, enregistrer les détails des fichiers modifiés.
+```js
+#!/bin/bash
+LOG_FILE="/var/log/file_changes.log"
+echo "$(date) - Files modified:" >> $LOG_FILE
+find /path/to/files -type f -mtime -1 >> $LOG_FILE
+```
+`Script de surveillance du réseau`
+Automatisez la surveillance du réseau et envoyez des alertes en cas de défaillance de la connectivité.
+```js
+#!/bin/bash
+REMOTE_HOST="example.com"
+if ! ping -c 1 $REMOTE_HOST &> /dev/null; then
+    echo "Network connection to $REMOTE_HOST failed." | mail -s "Network Alert" admin@example.com
+fi
+```
+`Script de nettoyage des journaux`
+Automatisez la suppression des fichiers journaux anciens pour libérer de l'espace disque.
+```js
+#!/bin/bash
+LOG_DIR="/var/log"
+find $LOG_DIR -type f -name "*.log" -mtime +7 -exec rm {} \;
+```
+`Script de gestion des utilisateurs inactifs`
+Automatisez la désactivation des comptes d'utilisateurs inactifs depuis un certain temps.
+```js
+#!/bin/bash
+INACTIVE_DAYS=90
+for user in $(lastlog -b $((INACTIVE_DAYS+1)) | awk '!/^$|Username/{print $1}'); do
+    usermod -L $user
+done
+```
+`Script de surveillance de l'intégrité des fichiers`
+Automatisez la vérification de l'intégrité des fichiers en utilisant des sommes de contrôle (checksums).
+```js
+#!/bin/bash
+CHECKSUM_DIR="/path/to/files"
+find $CHECKSUM_DIR -type f -exec sha256sum {} \; > checksums.txt
+```
+`Script de sauvegarde avec rotation`
+Automatisez la sauvegarde avec rotation pour conserver un nombre limité de copies.
+```js
+#!/bin/bash
+BACKUP_DIR="/backup"
+MAX_BACKUPS=5
+rsync -avz --link-dest=$BACKUP_DIR/previous_backup /source_data $BACKUP_DIR/$(date +%Y%m%d)
+find $BACKUP_DIR -maxdepth 1 -type d -name "20*" | sort -r | tail -n +$((MAX_BACKUPS+1)) | xargs rm -rf
+```
+`Script de rotation des sauvegardes`
+Automatisez la rotation des sauvegardes pour conserver un nombre spécifique de copies tout en économisant de l'espace.
+```js
+#!/bin/bash
+BACKUP_DIR="/backup"
+MAX_BACKUPS=7
+rsync -avz --link-dest=$BACKUP_DIR/previous_backup /source_data $BACKUP_DIR/$(date +%Y%m%d)
+NUM_BACKUPS=$(ls -1 $BACKUP_DIR | grep -c '20')
+if [ $NUM_BACKUPS -gt $MAX_BACKUPS ]; then
+    OLDEST_BACKUP=$(ls -1 $BACKUP_DIR | grep '20' | sort | head -n 1)
+    rm -rf $BACKUP_DIR/$OLDEST_BACKUP
+fi
+```
+`Script de surveillance des services`
+Automatisez la surveillance de plusieurs services et générez un rapport d'état.
+```js
+#!/bin/bash
+SERVICES=("apache2" "mysql" "ssh")
+REPORT_FILE="/var/log/service_status.log"
+
+echo "$(date)" >> $REPORT_FILE
+for service in "${SERVICES[@]}"; do
+    if systemctl is-active --quiet $service; then
+        echo "$service is running." >> $REPORT_FILE
+    else
+        echo "$service is not running." >> $REPORT_FILE
+    fi
+done
+```
+`Script de mise en place d'un environnement de développement`
+Automatisez la configuration de votre environnement de développement avec des outils spécifiques.
+```js
+#!/bin/bash
+# Installez git, python, et un éditeur de texte
+sudo apt update
+sudo apt install git python3 nano
+```
+`Script de surveillance des mises à jour de sécurité`
+Automatisez la surveillance des mises à jour de sécurité et générez des alertes.
+```js
+#!/bin/bash
+SECURITY_UPDATES=$(apt list --upgradable 2>/dev/null | grep -c security)
+if [ $SECURITY_UPDATES -gt 0 ]; then
+    echo "Security updates available. Please update your system." | mail -s "Security Updates Alert" admin@example.com
+fi
+```
+`Script de gestion des comptes utilisateurs`
+Automatisez la création, la modification et la suppression d'utilisateurs.
+
+```js
+#!/bin/bash
+ACTION="create"
+USERNAME="newuser"
+
+if [ "$ACTION" == "create" ]; then
+    useradd -m $USERNAME
+    echo "User $USERNAME created."
+elif [ "$ACTION" == "modify" ]; then
+    usermod -aG sudo $USERNAME
+    echo "User $USERNAME added to sudo group."
+elif [ "$ACTION" == "delete" ]; then
+    userdel -r $USERNAME
+    echo "User $USERNAME deleted."
+fi
+```
 
 
 
