@@ -61,3 +61,27 @@ if [ "$(top -bn1 | awk '/Cpu/ {print $2}' | cut -d. -f1)" -gt "$THRESHOLD" ]; th
     echo "High CPU usage! Please investigate." | mail -s "CPU Usage Alert" admin@example.com
 fi
 ```
+`Script de sauvegarde de base de données` 
+Automatisez la sauvegarde d'une base de données.
+```js
+#!/bin/bash
+DB_USER="username"
+DB_PASS="password"
+DB_NAME="database"
+BACKUP_DIR="/backup"
+mysqldump -u $DB_USER -p$DB_PASS $DB_NAME > $BACKUP_DIR/backup.sql
+```
+`Script de rotation des journaux`
+Automatisez la rotation des fichiers journaux pour éviter de saturer l'espace disque.
+```js
+#!/bin/bash
+LOG_DIR="/var/log"
+for log_file in $LOG_DIR/*.log; do
+    mv "$log_file" "$log_file.$(date +%Y%m%d)"
+done
+```
+
+
+
+
+
