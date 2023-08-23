@@ -1,24 +1,24 @@
 ```js
+find /chemin/vers/repertoire -type f -size +100M
 
-  find /chemin/vers/repertoire -type f -size +100M
 ```
 ```js
-  wc -l file.txt
+wc -l file.txt
 ```
 ```js
-  ps aux --sort=-%mem | head -n 11
+ps aux --sort=-%mem | head -n 11
 ```
 ```js
-  tar -czvf archive.tar.gz /chemin/vers/repertoire
+tar -czvf archive.tar.gz /chemin/vers/repertoire
 ```
 ```js
-  tail -n 10 -f fichier.log
+tail -n 10 -f fichier.log
 ```
 ```js
-  awk '{ sum += $1 } END { print sum }' file.txt
+awk '{ sum += $1 } END { print sum }' file.txt
 ```
 ```js
-  pandoc fichier.md -o file.pdf //  convertir
+pandoc fichier.md -o file.pdf //  convertir
 ```
 ```js
   ping -c 10 -i 2 adresse_ip
@@ -58,39 +58,48 @@
 //Éditer Tous les Fichiers dans un Répertoire en Utilisant Sed
 ```
 ```js
-  find /chemin/vers/repertoire -type f -exec sed -i 's/motif/remplacement/g' {} +
+find /chemin/vers/repertoire -type f -exec sed -i 's/motif/remplacement/g' {} +
+
 //Trouver et Remplacer Récursivement dans des Fichiers
 ```
 ```js
-  commande | awk '{count[$1]++} END {for (ip in count) print ip, count[ip]}'
+commande | awk '{count[$1]++} END {for (ip in count) print ip, count[ip]}'
+
 //Grouper la Sortie d'une Commande en Fonction d'une Colonne
 ```
 ```js
-  for fichier in *.txt; do commande "$fichier"; done
+for fichier in *.txt; do commande "$fichier"; done
+
 //Exécuter une Commande sur Tous les Fichiers Correspondants
 ```
 ```js
-  df -h /chemin/vers/disque
+df -h /chemin/vers/disque
+
 //Afficher les Détails d'un Disque
 ```
 ```js
-  sha256sum -c file.sha256
+sha256sum -c file.sha256
+
 //Vérifier l'Intégrité d'un Fichier avec sha256sum
 ```
 ```js
-  ssh -D 1080 utilisateur@serveur_ssh
+ssh -D 1080 utilisateur@serveur_ssh
+
 //Créer un Tunnelling SSH Dynamique
 ```
 ```js
-  sudo -u autre_utilisateur commande
+sudo -u autre_utilisateur commande
+
 //Exécuter une Commande dans le Contexte d'un Autre Utilisateur
 ```
 ```js
-  watch -n 1 "du -sh /chemin/vers/repertoire"
+watch -n 1 "du -sh /chemin/vers/repertoire"
+
 //Surveiller l'Utilisation de l'Espace Disque en Temps Réel
 ```
 ```js
-  tail -f /var/log/syslog > file.log
+tail -f /var/log/syslog > file.log
+
 //Afficher les Erreurs Système dans un Fichier de Log
 ```
 
