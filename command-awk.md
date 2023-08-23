@@ -1,6 +1,6 @@
 Calculer la Moyenne d'une Colonne de Données dans un Fichier CSV
 ```js
-  awk -F ',' '{ sum += $2 } END { print "Moyenne :", sum/NR }' fichier.csv
+  awk -F ',' '{ sum += $2 } END { print "Moyenne :", sum/NR }' file.csv
 ```
 Filtrer les Lignes qui Satisfont Plusieurs Conditions
 ```js
@@ -8,11 +8,11 @@ Filtrer les Lignes qui Satisfont Plusieurs Conditions
 ```
 Compter le Nombre de Mots dans un Fichier
 ```js
-  awk '{ total += NF } END { print "Nombre de mots :", total }' fichier.txt
+  awk '{ total += NF } END { print "Nombre de mots :", total }' file.txt
 ```
 Convertir un Format de Date dans un Fichier
 ```js
-  awk -F '/' '{ print $3 "-" $1 "-" $2 }' fichier_dates.txt
+  awk -F '/' '{ print $3 "-" $1 "-" $2 }' file_dates.txt
 ```
 Grouper et Agréger des Données avec awk
 ```js
@@ -20,7 +20,7 @@ Grouper et Agréger des Données avec awk
 ```
 Extraire les Lignes entre Deux Motifs
 ```js
-  awk '/Motif1/,/Motif2/' fichier.txt
+  awk '/Motif1/,/Motif2/' file.txt
 ```
 Afficher les Lignes Répétées avec leur Compteur
 ```js
@@ -28,7 +28,7 @@ Afficher les Lignes Répétées avec leur Compteur
 ```
 Travailler avec des Tableaux Associatifs
 ```js
-  awk '{ sum += $1; sumsq += $1^2 } END { avg = sum/NR; stddev = sqrt(sumsq/NR - avg^2); print "Somme :", sum; print "Moyenne :", avg; print "Écart-type :", stddev }' fichier.txt
+  awk '{ sum += $1; sumsq += $1^2 } END { avg = sum/NR; stddev = sqrt(sumsq/NR - avg^2); print "Somme :", sum; print "Moyenne :", avg; print "Écart-type :", stddev }' file.txt
 ```
 Effectuer un Pivot de Tableau en Utilisant awk :
 ```js
@@ -36,11 +36,11 @@ Effectuer un Pivot de Tableau en Utilisant awk :
 ```
 Manipuler des Colonnes avec Format Spécifique
 ```js
-  awk -F 'x' '{ produit = $1 * $2; print produit }' fichier_dimensions.txt
+  awk -F 'x' '{ produit = $1 * $2; print produit }' file_dimensions.txt
 ```
 Recherche et Remplacement avec Condition :
 ```js
-  awk '/Motif1/ { gsub("ancien", "nouveau"); print } !/Motif1/' fichier.txt
+  awk '/Motif1/ { gsub("ancien", "nouveau"); print } !/Motif1/' file.txt
 ```
 Calculer la Médiane d'une Colonne de Données
 ```js
@@ -48,11 +48,11 @@ Calculer la Médiane d'une Colonne de Données
 ```
 Effectuer une Opération sur des Blocs de Lignes
 ```js
-  awk 'NF { block = block $0 ORS } !NF { print "Bloc:", block; block = "" }' fichier.txt
+  awk 'NF { block = block $0 ORS } !NF { print "Bloc:", block; block = "" }' file.txt
 ```
 Manipuler des Chaînes de Caractères
 ```js
-  awk '{ print $2, $1 }' fichier_noms.txt
+  awk '{ print $2, $1 }' file_names.txt
 ```
 Filtrer les Lignes uniques en Ignorant la Casse
 ```js
@@ -64,11 +64,11 @@ Calculer la Distance Euclidienne entre Deux Points
 ```
 Fusionner des Fichiers en Utilisant un Identifiant Commun
 ```js
-  awk 'NR == FNR { data[$1] = $0; next } $1 in data { print data[$1], $0 }' fichier1.txt fichier2.txt
+  awk 'NR == FNR { data[$1] = $0; next } $1 in data { print data[$1], $0 }' file1.txt file2.txt
 ```
 Manipuler des Dates et Heures
 ```js
-  awk -F ' ' '{ cmd = "date -d \"" $1 " " $2 "\" +%s"; cmd | getline timestamp; close(cmd); new_timestamp = timestamp + 3600; print strftime("%Y-%m-%d %H:%M:%S", new_timestamp) }' fichier_dates.txt
+  awk -F ' ' '{ cmd = "date -d \"" $1 " " $2 "\" +%s"; cmd | getline timestamp; close(cmd); new_timestamp = timestamp + 3600; print strftime("%Y-%m-%d %H:%M:%S", new_timestamp) }' file_dates.txt
 ```
 Analyser et Extraire des Données JSON
 ```js
