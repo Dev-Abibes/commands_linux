@@ -80,7 +80,7 @@ Calculer la Densité de Données dans une Fenêtre Glissante
 ```
 Exécuter une Commande sur un Ensemble de Fichiers
 ```js
-  awk '{ print "Traitement du fichier", FILENAME, ":", $0 }' file1.txt file2.txt
+  awk '{ print "Traitement du file", FILENAME, ":", $0 }' file1.txt file2.txt
 ```
 Filtrer et Grouper les Données par Catégories
 ```js
@@ -88,7 +88,7 @@ Filtrer et Grouper les Données par Catégories
 ```
 Convertir un Format de Temps en Secondes :
 ```js
-  awk -F ':' '{ seconds = $1 * 3600 + $2 * 60 + $3; print seconds }' fichier_temps.txt
+  awk -F ':' '{ seconds = $1 * 3600 + $2 * 60 + $3; print seconds }' file_temps.txt
 ```
 Trouver le Mot le Plus Long dans un Texte :
 ```js
