@@ -4,7 +4,7 @@ Calculer la Moyenne d'une Colonne de Données dans un Fichier CSV
 ```
 Filtrer les Lignes qui Satisfont Plusieurs Conditions
 ```js
-  awk '$1 > 100 && $2 < 50' fichier.txt
+  awk '$1 > 100 && $2 < 50' file.txt
 ```
 Compter le Nombre de Mots dans un Fichier
 ```js
@@ -56,11 +56,11 @@ Manipuler des Chaînes de Caractères
 ```
 Filtrer les Lignes uniques en Ignorant la Casse
 ```js
-  awk '{ lines[tolower($0)]++ } END { for (line in lines) print line }' fichier.txt
+  awk '{ lines[tolower($0)]++ } END { for (line in lines) print line }' file.txt
 ```
 Calculer la Distance Euclidienne entre Deux Points
 ```js
-  awk '{ dist = sqrt(($3 - $1)^2 + ($4 - $2)^2); print "Distance entre", $1, $2, "et", $3, $4, ":", dist }' fichier_points.txt
+  awk '{ dist = sqrt(($3 - $1)^2 + ($4 - $2)^2); print "Distance entre", $1, $2, "et", $3, $4, ":", dist }' file_points.txt
 ```
 Fusionner des Fichiers en Utilisant un Identifiant Commun
 ```js
@@ -72,15 +72,15 @@ Manipuler des Dates et Heures
 ```
 Analyser et Extraire des Données JSON
 ```js
-  awk 'BEGIN { RS = "[{}]"; FS = "[,:]"; } /"clé"/ { print $4 }' fichier.json
+  awk 'BEGIN { RS = "[{}]"; FS = "[,:]"; } /"clé"/ { print $4 }' file.json
 ```
 Calculer la Densité de Données dans une Fenêtre Glissante 
 ```js
-  awk 'NR > 10 { sum -= array[NR % 10] } { array[NR % 10] = $1; sum += $1; if (NR >= 10) print "Densité :", sum / 10 }' fichier_capteurs.txt
+  awk 'NR > 10 { sum -= array[NR % 10] } { array[NR % 10] = $1; sum += $1; if (NR >= 10) print "Densité :", sum / 10 }' file_capteurs.txt
 ```
 Exécuter une Commande sur un Ensemble de Fichiers
 ```js
-  awk '{ print "Traitement du fichier", FILENAME, ":", $0 }' fichier1.txt fichier2.txt
+  awk '{ print "Traitement du fichier", FILENAME, ":", $0 }' file1.txt file2.txt
 ```
 Filtrer et Grouper les Données par Catégories
 ```js
