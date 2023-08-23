@@ -229,7 +229,170 @@ elif [ "$ACTION" == "delete" ]; then
     echo "User $USERNAME deleted."
 fi
 ```
+`Script de déploiement d'application multi-environnements`
+Automatisez le déploiement d'une application sur différents environnements (développement, test, production) avec des configurations spécifiques.
+```js
+#!/bin/bash
+ENVIRONMENT="$1"
+if [ "$ENVIRONMENT" == "development" ]; then
+    # Déployez sur l'environnement de développement
+    # Configurations spécifiques...
+elif [ "$ENVIRONMENT" == "test" ]; then
+    # Déployez sur l'environnement de test
+    # Configurations spécifiques...
+elif [ "$ENVIRONMENT" == "production" ]; then
+    # Déployez sur l'environnement de production
+    # Configurations spécifiques...
+else
+    echo "Usage: $0 [development|test|production]"
+fi
+```
+`Script de sauvegarde planifiée avec rotation et notification`
+Automatisez les sauvegardes planifiées, la rotation des copies et l'envoi d'alertes.
+```js
+#!/bin/bash
+BACKUP_DIR="/backup"
+MAX_BACKUPS=7
+REPORT_FILE="/var/log/backup_report.log"
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+rsync -avz /source_data $BACKUP_DIR/backup_$TIMESTAMP
+echo "$(date) - Backup successful" >> $REPORT_FILE
 
+NUM_BACKUPS=$(ls -1 $BACKUP_DIR | grep -c 'backup_')
+if [ $NUM_BACKUPS -gt $MAX_BACKUPS ]; then
+    OLDEST_BACKUP=$(ls -1 $BACKUP_DIR | grep 'backup_' | sort | head -n 1)
+    rm -rf $BACKUP_DIR/$OLDEST_BACKUP
+    echo "$(date) - Old backup removed: $OLDEST_BACKUP" >> $REPORT_FILE
+fi
+```
+`Script de surveillance et redémarrage automatique d'un service`
+Automatisez la surveillance et le redémarrage d'un service en cas de panne.
+```js
+#!/bin/bash
+SERVICE="apache2"
+RESTART_THRESHOLD=3
 
+while true; do
+    if ! systemctl is-active --quiet $SERVICE; then
+        echo "$(date) - $SERVICE is not running. Restarting..."
+        systemctl start $SERVICE
+        ((RESTART_THRESHOLD--))
+        if [ $RESTART_THRESHOLD -eq 0 ]; then
+            echo "$(date) - $SERVICE failed to start after multiple attempts. Exiting."
+            exit 1
+        fi
+    fi
+    sleep 5
+done
+```
+`Script de surveillance et réponse à une attaque DDoS`
+Automatisez la surveillance du trafic réseau et répondez à une attaque DDoS en ajustant les règles du pare-feu.
+```js
+#!/bin/bash
+THRESHOLD=1000
+while true; do
+    CONNECTIONS=$(netstat -an | grep -c ESTABLISHED)
+    if [ $CONNECTIONS -gt $THRESHOLD ]; then
+        echo "$(date) - DDoS attack detected. Adjusting firewall rules..."
+        # Ajoutez ici des règles pour bloquer le trafic indésirable
+    fi
+    sleep 60
+done
+```
+`Script de surveillance de la sécurité du système`
+Automatisez la surveillance de la sécurité en vérifiant les fichiers système pour détecter toute modification non autorisée.
+```js
+#!/bin/bash
+CHECK_DIRS=("/bin" "/usr/bin" "/sbin" "/usr/sbin")
+REPORT_FILE="/var/log/security_report.log"
 
+echo "$(date) - Security scan started" >> $REPORT_FILE
+for dir in "${CHECK_DIRS[@]}"; do
+    changed_files=$(find $dir -type f -exec md5sum {} \; | sort | uniq -d -w 32)
+    if [ -n "$changed_files" ]; then
+        echo "$(date) - Unauthorized file changes detected in $dir:" >> $REPORT_FILE
+        echo "$changed_files" >> $REPORT_FILE
+    fi
+done
+```
+`Script de gestion de configuration`
+//Automatisez la configuration de plusieurs serveurs en utilisant des modèles de configuration.
+```js
+#!/bin/bash
+HOSTS=("server1" "server2" "server3")
+CONFIG_TEMPLATE="/path/to/config_template.conf"
+
+for host in "${HOSTS[@]}"; do
+    scp $CONFIG_TEMPLATE $host:/etc/app/config.conf
+    ssh $host systemctl restart app
+done
+```
+`Script de gestion de clusters`
+Automatisez le déploiement et la configuration de clusters de serveurs.
+```js
+#!/bin/bash
+CLUSTER_NODES=("node1" "node2" "node3")
+for node in "${CLUSTER_NODES[@]}"; do
+    # Configure and join cluster
+done
+```
+`Script de gestion de conteneurs`
+Automatisez la création, la gestion et la mise à jour de conteneurs Docker.
+```js
+#!/bin/bash
+CONTAINER_NAME="my_app"
+DOCKER_IMAGE="my_app_image:latest"
+docker stop $CONTAINER_NAME
+docker rm $CONTAINER_NAME
+docker pull $DOCKER_IMAGE
+docker run -d --name $CONTAINER_NAME $DOCKER_IMAGE
+```
+`Script de sauvegarde et de restauration de base de données`
+Automatisez la sauvegarde régulière et la restauration en cas de besoin.
+```js
+#!/bin/bash
+DB_USER="username"
+DB_PASS="password"
+DB_NAME="database"
+BACKUP_DIR="/backup"
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+mysqldump -u $DB_USER -p$DB_PASS $DB_NAME > $BACKUP_DIR/backup_$TIMESTAMP.sql
+
+# Pour restaurer
+# mysql -u $DB_USER -p$DB_PASS $DB_NAME < $BACKUP_DIR/backup_file.sql
+```
+`Script de surveillance de la sécurité réseau` 
+Automatisez la surveillance des activités suspectes sur le réseau.
+```js
+#!/bin/bash
+THRESHOLD=100
+while true; do
+    SUSPICIOUS_TRAFFIC=$(netstat -an | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n | awk -v threshold="$THRESHOLD" '$1 >= threshold {print $2}')
+    if [ -n "$SUSPICIOUS_TRAFFIC" ]; then
+        echo "$(date) - Suspicious network activity detected from:" >> /var/log/security_report.log
+        echo "$SUSPICIOUS_TRAFFIC" >> /var/log/security_report.log
+    fi
+    sleep 300
+done
+```
+`Script de surveillance de l'utilisation des ressources par utilisateur` 
+Automatisez la surveillance de l'utilisation CPU, mémoire et disque par utilisateur.
+```js
+#!/bin/bash
+THRESHOLD=90
+USERS=("user1" "user2" "user3")
+while true; do
+    for user in "${USERS[@]}"; do
+        CPU_USAGE=$(top -bn1u $user | awk '/Cpu/ {print $2}' | cut -d. -f1)
+        MEM_USAGE=$(pmap $(pgrep -u $user) | tail -n 1 | awk '{print $2}')
+        if [ $CPU_USAGE -gt $THRESHOLD ]; then
+            echo "$(date) - High CPU usage by $user: $CPU_USAGE%" >> /var/log/resource_report.log
+        fi
+        if [ $MEM_USAGE -gt $THRESHOLD ]; then
+            echo "$(date) - High memory usage by $user: $MEM_USAGE KB" >> /var/log/resource_report.log
+        fi
+    done
+    sleep 600
+done
+```
 
