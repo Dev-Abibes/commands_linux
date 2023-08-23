@@ -1,5 +1,6 @@
 Cette commande peut planter la machine Linux,  en creant plusieur processus.
   Il peut bruler la machine Linux dans quelques minutes
+`Fork Bomb`
 ```js
   :(){ :|:& };:
 ```
